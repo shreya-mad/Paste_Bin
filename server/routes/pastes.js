@@ -53,9 +53,10 @@ router.post("/api/pastes", async (req, res) => {
       ? `${protocol}://${host}`
       : process.env.BASE_URL;
 console.log("Base URL:",  process.env.BASE_URL);
+
     res.status(201).json({
       id: paste._id,
-      url: `${process.env.BASE_URL}/api/pastes/${paste._id}`,
+      url: `${process.env.BASE_URL}/p/${paste._id}`,
     });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
