@@ -64,7 +64,7 @@ console.log("Base URL:",  process.env.BASE_URL);
 });
 
 /**
- * FETCH PASTE (API)
+//  * FETCH PASTE (API)
  * GET /api/pastes/:id
  */
 // router.get("/:id", async (req, res) => {
