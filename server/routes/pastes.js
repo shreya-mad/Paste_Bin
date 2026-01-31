@@ -8,7 +8,7 @@ const router = express.Router();
  * CREATE PASTE
  * POST /api/pastes
  */
-router.post("/", async (req, res) => {
+router.post("/api/pastes", async (req, res) => {
   console.log("Received request to create paste:", req.body);
   try {
     const { content, ttl_seconds, max_views } = req.body;
@@ -43,20 +43,19 @@ router.post("/", async (req, res) => {
 
 
     // ✅ DYNAMIC BASE URL LOGIC
-    // const isLocalhost =
-    //   req.hostname === "localhost" || req.hostname === "127.0.0.1";
+    const isLocalhost =
+      req.hostname === "localhost" || req.hostname === "127.0.0.1";
 
-    // const protocol = req.protocol; // http or https
-    // const host = req.get("host");  // localhost:5001 or domain.com
+    const protocol = req.protocol; // http or https
+    const host = req.get("host");  // localhost:5001 or domain.com
 
-    // const baseUrl = isLocalhost
-    //   ? `${protocol}://${host}`
-    //   :
-      const baseUrl= process.env.BASE_URL;
-
+    const baseUrl = isLocalhost
+      ? `${protocol}://${host}`
+      : process.env.BASE_URL;
+console.log("Base URL:",  process.env.BASE_URL);
     res.status(201).json({
       id: paste._id,
-      url: `${baseUrl}/api/pastes/${paste._id}`,
+      url: `${process.env.BASE_URL}/api/pastes/${paste._id}`,
     });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
@@ -99,10 +98,9 @@ router.post("/", async (req, res) => {
 //   }
 // });
 
-router.get("/:id", async (req, res) => {
+router.get("/p/:id", async (req, res) => {
   try {
     const paste = await Paste.findById(req.params.id);
-
     if (!paste) {
       return res.status(404).send("Paste not found");
     }

@@ -28,7 +28,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api/healthz", healthRoute);
-app.use("/api/pastes", pasteRoutes);
+app.use("/", pasteRoutes);
 
 const PORT =process.env.PORT || 5000;
 // console.log("🚀 Server starting on port "+PORT);
