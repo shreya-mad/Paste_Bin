@@ -43,15 +43,16 @@ router.post("/", async (req, res) => {
 
 
     // ✅ DYNAMIC BASE URL LOGIC
-    const isLocalhost =
-      req.hostname === "localhost" || req.hostname === "127.0.0.1";
+    // const isLocalhost =
+    //   req.hostname === "localhost" || req.hostname === "127.0.0.1";
 
-    const protocol = req.protocol; // http or https
-    const host = req.get("host");  // localhost:5001 or domain.com
+    // const protocol = req.protocol; // http or https
+    // const host = req.get("host");  // localhost:5001 or domain.com
 
-    const baseUrl = isLocalhost
-      ? `${protocol}://${host}`
-      : process.env.BASE_URL;
+    // const baseUrl = isLocalhost
+    //   ? `${protocol}://${host}`
+    //   :
+      const baseUrl= process.env.BASE_URL;
 
     res.status(201).json({
       id: paste._id,
