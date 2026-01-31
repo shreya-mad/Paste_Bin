@@ -49,10 +49,11 @@ router.post("/api/pastes", async (req, res) => {
     const protocol = req.protocol; // http or https
     const host = req.get("host");  // localhost:5001 or domain.com
 
-    const baseUrl = isLocalhost
-      ? `${protocol}://${host}`
-      : process.env.BASE_URL;
-console.log("Base URL:",  process.env.BASE_URL);
+//     const baseUrl = isLocalhost
+//       ? `${protocol}://${host}`
+//       : process.env.BASE_URL;
+// console.log("Base URL:",  process.env.BASE_URL);
+
 
     res.status(201).json({
       id: paste._id,
