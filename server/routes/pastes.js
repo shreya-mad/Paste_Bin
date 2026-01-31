@@ -40,9 +40,22 @@ router.post("/", async (req, res) => {
       expiresAt,
       maxViews: max_views ?? null,
     });
+
+
+    // ✅ DYNAMIC BASE URL LOGIC
+    const isLocalhost =
+      req.hostname === "localhost" || req.hostname === "127.0.0.1";
+
+    const protocol = req.protocol; // http or https
+    const host = req.get("host");  // localhost:5001 or domain.com
+
+    const baseUrl = isLocalhost
+      ? `${protocol}://${host}`
+      : process.env.BASE_URL;
+
     res.status(201).json({
       id: paste._id,
-      url: `${process.env.BASE_URL}/api/pastes/${paste._id}`,
+      url: `${baseUrl}/api/pastes/${paste._id}`,
     });
   } catch (error) {
     res.status(500).json({ error: "Server error" });

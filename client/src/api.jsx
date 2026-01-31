@@ -1,28 +1,9 @@
-// export const createPaste = async (data) => {
-//   console.log("Creating paste with data:", data);
-//   const res = await fetch("/api/pastes", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   });
-
-//   if (!res.ok) {
-//     const text = await res.text();
-//     throw new Error(`Error ${res.status}: ${text}`);
-//   }
-
-//   return res.json();
-// };
-
-// export const getPaste = (id) =>
-//   fetch(`/api/pastes/${id}`).then((res) => res.json());
-
-
+import { BASE_URL } from "./dynamicApi";
 const API = import.meta.env.VITE_API_URL;
 
 export const createPaste = (data) =>{
-  console.log("API URL:", API);
-   return fetch(`${API}/api/pastes`, {
+  console.log("API URL:", BASE_URL);
+   return fetch(`${BASE_URL}/api/pastes`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -31,5 +12,5 @@ export const createPaste = (data) =>{
  ;
 
 export const getPaste = (id) =>
-  fetch(`${API}/api/pastes/${id}`).then(res => res.json());
+  fetch(`${BASE_URL}/api/pastes/${id}`).then(res => res.json());
 
