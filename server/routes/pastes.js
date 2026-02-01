@@ -57,7 +57,7 @@ router.post("/api/pastes", async (req, res) => {
 
     res.status(201).json({
       id: paste._id,
-      url: `https://pastebin-backend-vc0r.onrender.com/p/${paste._id}`,
+      url: `${process.env.BASE_URL}/p/${paste._id}`,
     });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
